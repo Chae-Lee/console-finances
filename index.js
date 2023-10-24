@@ -133,15 +133,19 @@ for (var i=1; i<finances.length; i++){
   var month = finances [i][0];
   console.log (month, change); //shows profit or losses from month to month 
 }
-
 monthlyChanges.push(change);
 
 //Average change
 const totalChange = monthlyChanges.reduce ((accumulator, currentValue) => accumulator + currentValue,0);
 console.log("Total Change: " + totalChange);
-const averageChange = totalChange / finances.length;
-console.log ("Average change " + averageChange);
+const averageChange = totalChange / (finances.length-1);
+console.log ("Average change: $ " + averageChange);
+//Formatting number to nearest 2 decimal points 
+var numberFormat = averageChange.toFixed(2);
+console.log ("Average change formatted number: $ " + numberFormat);
 
+// const result = -averageChange.toFixed(2);
+// console.log("Average Change: " + result);
 
 //separate profits and losses 
 const profits = monthlyChanges.filter(change => change >0);
@@ -154,3 +158,6 @@ console.log ("Total Profit: $ " + totalProfit);
 //Total amount of losses 
 const totalLoss = losses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log ("Total Losses: $ " + totalLoss);
+
+console.log ("Change " + averageChange.toFixed(2));
+
