@@ -107,7 +107,8 @@ var finances = [
 
 // Counting how many months are in this dataset 
 console.log ("Financial Analysis");
-console.log("Total Months: " + finances.length);
+var totalDuration = finances.length;
+console.log("Total Months: " + totalDuration);
 
 //Extract the integer values from the finances array and filter out non-integer values
 // Extract using Number.isInteger and declaring as another variable
@@ -116,6 +117,40 @@ console.log(financialValues);
 
 //calculate the sum of all integers within the finances array
 const sum = financialValues.reduce((accumulator, currentValue)=> accumulator + currentValue,0);
-console.log(sum);
 console.log("Total: $ " + sum);
 
+//Average of the changes in profit/losses
+//Calculation of the total change in profit/losses from month to month 
+console.log (sum/totalDuration); //average of the overall duration
+
+//difference in value from month to month 
+const monthlyChanges = [];
+
+for (var i=1; i<finances.length; i++){
+  var currentMonth = finances[i][1];
+  var previousMonth = finances [i-1][1];
+  var change = currentMonth-previousMonth;
+  var month = finances [i][0];
+  console.log (month, change); //shows profit or losses from month to month 
+}
+
+monthlyChanges.push(change);
+
+//Average change
+const totalChange = monthlyChanges.reduce ((accumulator, currentValue) => accumulator + currentValue,0);
+console.log("Total Change: " + totalChange);
+const averageChange = totalChange / finances.length;
+console.log ("Average change " + averageChange);
+
+
+//separate profits and losses 
+const profits = monthlyChanges.filter(change => change >0);
+const losses = monthlyChanges.filter(change => change<0);
+
+// Total amount of profit 
+const totalProfit = profits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log ("Total Profit: $ " + totalProfit);
+
+//Total amount of losses 
+const totalLoss = losses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log ("Total Losses: $ " + totalLoss);
