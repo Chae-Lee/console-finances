@@ -12,7 +12,6 @@
 // Greatest Increase in Profits/Losses - showing the (date & amount) over the entire period 
 // Greatest Decrease in Profits/Losses - showing the (date & amount) over the entire period 
 
-
 //There are arrays within the array
 
 // Dataset that shows profits/losses of each month
@@ -121,10 +120,10 @@ console.log("Total: $ " + sum);
 
 //Average of the changes in profit/losses
 //Calculation of the total change in profit/losses from month to month 
-console.log (sum/totalDuration); //average of the overall duration
+// console.log (sum/totalDuration); //average of the overall duration
 
 //difference in value from month to month 
-const monthlyChanges = [];
+var monthlyChanges = []; 
 
 for (var i=1; i<finances.length; i++){
   var currentMonth = finances[i][1];
@@ -132,32 +131,51 @@ for (var i=1; i<finances.length; i++){
   var change = currentMonth-previousMonth;
   var month = finances [i][0];
   console.log (month, change); //shows profit or losses from month to month 
+  monthlyChanges.push(change);
 }
-monthlyChanges.push(change);
 
 //Average change
-const totalChange = monthlyChanges.reduce ((accumulator, currentValue) => accumulator + currentValue,0);
-console.log("Total Change: " + totalChange);
-const averageChange = totalChange / (finances.length-1);
+var totalChange = monthlyChanges.reduce ((accumulator, currentValue) => accumulator + currentValue,0);
+console.log("Total Change: $ " + totalChange);
+var averageChange = totalChange / (finances.length-1);
 console.log ("Average change: $ " + averageChange);
 //Formatting number to nearest 2 decimal points 
 var numberFormat = averageChange.toFixed(2);
 console.log ("Average change formatted number: $ " + numberFormat);
 
-// const result = -averageChange.toFixed(2);
-// console.log("Average Change: " + result);
 
 //separate profits and losses 
-const profits = monthlyChanges.filter(change => change >0);
-const losses = monthlyChanges.filter(change => change<0);
+var profits = monthlyChanges.filter(change => change >0);
+var losses = monthlyChanges.filter(change => change<0);
 
 // Total amount of profit 
-const totalProfit = profits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+var totalProfit = profits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log ("Total Profit: $ " + totalProfit);
 
 //Total amount of losses 
-const totalLoss = losses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+var totalLoss = losses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log ("Total Losses: $ " + totalLoss);
 
-console.log ("Change " + averageChange.toFixed(2));
+// filtering only the numbers in the monthlyChanges array 
+var numericChanges = monthlyChanges.filter(change => !isNaN(change));
+
+// Find the greatest Increase in Profits/losses 
+if (numericChanges.length > 0) {
+  var greatestIncrease = Math.max(...numericChanges); 
+  var greatestIncreaseIndex = monthlyChanges.indexOf (greatestIncrease);
+  var dateOfIncrease = finances[greatestIncreaseIndex + 1][0]; //this variable refers to the index of greatest change which is one position ahead of finances dataset. Therefore +1 is added to adjust this. 
+  console.log("Greatest Increase in Profits/Losses: " + dateOfIncrease + "  $ " + greatestIncrease);
+}
+
+//Greatest Decrease in Profits/Losses 
+if (numericChanges.length > 0) {
+  var greatestDecrease = Math.min (...numericChanges);
+  var greatestDecreaseIndex = monthlyChanges.indexOf (greatestDecrease);
+  var dateOfDecrease = finances[greatestDecreaseIndex +1][0]; //this variable refers to the index of greatest change which is one position ahead of finances dataset. Therefore +1 is added to adjust this. 
+  console.log ("Greatest Decrease in Profits/Losses: " + dateOfDecrease + "  $ " + greatestDecrease);
+}
+
+
+
+
 
