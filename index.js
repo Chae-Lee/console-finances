@@ -119,10 +119,7 @@ const sum = financialValues.reduce((accumulator, currentValue)=> accumulator + c
 console.log("Total: $ " + sum);
 
 //Average of the changes in profit/losses
-//Calculation of the total change in profit/losses from month to month 
-// console.log (sum/totalDuration); //average of the overall duration
-
-//difference in value from month to month 
+// Calculation of the difference in value from month to month 
 var monthlyChanges = []; 
 
 for (var i=1; i<finances.length; i++){
@@ -156,7 +153,7 @@ console.log ("Total Profit: $ " + totalProfit);
 var totalLoss = losses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 console.log ("Total Losses: $ " + totalLoss);
 
-// filtering only the numbers in the monthlyChanges array 
+// Filtering only the numbers in the monthlyChanges array 
 var numericChanges = monthlyChanges.filter(change => !isNaN(change));
 
 // Find the greatest Increase in Profits/losses 
