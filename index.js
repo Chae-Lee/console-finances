@@ -127,7 +127,7 @@ for (var i=1; i<finances.length; i++){
   var previousMonth = finances [i-1][1];
   var change = currentMonth-previousMonth;
   var month = finances [i][0];
-  console.log (month, change); //shows profit or losses from month to month 
+  // console.log (month, change); //shows profit or losses from month to month 
   monthlyChanges.push(change);
 }
 
