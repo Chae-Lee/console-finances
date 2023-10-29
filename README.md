@@ -54,5 +54,7 @@ Please make sure to update tests as appropriate.
 <b> URL to the deployed website </b>
 https://chae-lee.github.io/console-finances/
 
+
 <b> Screenshot of console </b>
+
 ![consolescreenshot](./images/financial-analysis-screenshot.png)
