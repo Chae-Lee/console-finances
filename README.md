@@ -52,6 +52,7 @@ Please make sure to update tests as appropriate.
 ## The final deployed application should look like this
 
 <b> URL to the deployed website </b>
+https://chae-lee.github.io/console-finances/
 
-
-![Portfolio screenshot](./images/financial-analysis-screenshot.png)
+<b> Screenshot of console </b>
+![consolescreenshot](./images/financial-analysis-screenshot.png)
